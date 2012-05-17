@@ -52,6 +52,9 @@ In addition to this, cannedhttp also supports a router API, allowing you to inte
                 return Response.custom(200, Maps.<String,String>newHashMap(), "<html>Custom response content</html>");
             
         });
+
+	httpGet("http://localhost:8080/testHeaders");
+
     }
 
 
