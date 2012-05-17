@@ -55,23 +55,9 @@ In addition to this, cannedhttp also supports a router API, allowing you to inte
     }
 
 
+Advanced
+--------
 
 In more advanced usage scenarios, it could even be used to simulate a part of the webservice you are testing against, by returning different responses depending on request variables and so forth. 
 
-
-Usage
------
-
-    @Test
-    public void testCanned() throws Exception {
-        R r = httpGet("http://localhost:8089/");
-        Assert.assertEquals(r.response, "CANNED GET");
-        Assert.assertEquals("Test", r.headers.get("X-Custom"));
-        r = httpPost("http://localhost:8089/");
-        Assert.assertEquals(r.response, "CANNED POST");
-        r = httpGet("http://localhost:8089/weirdResponse");
-        Assert.assertEquals(301, r.responseCode);
-        Assert.assertEquals(r.response, "This is a 301");
-    }
-
-This test shows 
+In theory, it could actually be used as a very primitive Java HTTP router, although this use is not recommended and not the intent of the project.
