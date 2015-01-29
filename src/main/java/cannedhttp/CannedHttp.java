@@ -24,8 +24,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.eclipse.jetty.server.Connector;
+import org.eclipse.jetty.server.HttpConfiguration;
+import org.eclipse.jetty.server.HttpConnectionFactory;
 import org.eclipse.jetty.server.Server;
-import org.eclipse.jetty.server.nio.SelectChannelConnector;
+import org.eclipse.jetty.server.ServerConnector;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 
@@ -37,8 +39,9 @@ public class CannedHttp {
     
     public static Router cannedServer(int port, String cannedPath) {
         Server s = new Server();
+        HttpConfiguration httpConfig = new HttpConfiguration();
+        ServerConnector connector = new ServerConnector(s, new HttpConnectionFactory(httpConfig));
         
-        Connector connector = new SelectChannelConnector();
         connector.setHost("0.0.0.0");
         connector.setPort(port);
         s.setConnectors(new Connector[] {connector});
